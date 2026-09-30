@@ -1,0 +1,54 @@
+/* ===== Botón "Esquema SQL" (estilo Uiverse · reshades) ===== */
+.live-l{display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.uv{display:inline-flex;align-items:center;gap:.55em;height:2.4em;padding:0 1em 0 1.15em;border:1.5px solid var(--acc);border-radius:11px;background:transparent;color:var(--ink);font-size:.88rem;font-weight:500;transition:background .6s ease,color .6s ease,transform .35s cubic-bezier(.34,1.8,.5,1)}
+.uv svg{width:1.35em;fill:none;stroke:currentColor;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round;transition:transform .6s ease}
+.uv:hover{background:var(--acc);color:#fff}.uv:hover svg{transform:translateX(5px)}
+.uv:active{transform:scale(1.05,.86);transition-duration:.08s}
+/* ===== Ventana ===== */
+.sqm{width:min(1120px,100%)}
+.sq-top{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;margin-bottom:10px}
+.sq-top h2{margin:0}.sq-top p{color:var(--mute);font-size:.9rem}
+.sq-wrap{overflow-x:auto;padding:6px 0 10px}
+.sq{position:relative;min-width:980px;padding:6px}
+.sq-grid{position:relative;z-index:1;display:grid;grid-template-columns:repeat(4,1fr);gap:72px;align-items:start}
+.sqsvg{position:absolute;inset:0;width:100%;height:100%;overflow:visible;z-index:2;pointer-events:none}
+/* ===== Loader (Uiverse · Shoh2008) ===== */
+.sq-load{display:grid;place-items:center;gap:18px;padding:80px 0;color:var(--mute)}
+.loader{display:block;width:84px;height:84px;position:relative}
+.loader:before,.loader:after{content:"";position:absolute;left:50%;bottom:0;width:64px;height:64px;border-radius:50%;
+background:linear-gradient(145deg,var(--acc),var(--acc2));box-shadow:inset 0 3px 0 rgba(255,255,255,.5);transform:translate(-50%,-100%) scale(0);animation:sqpush 2s infinite linear}
+.loader:after{animation-delay:1s}
+@keyframes sqpush{0%,50%{transform:translate(-50%,0%) scale(1)}100%{transform:translate(-50%,-100%) scale(0)}}
+/* ===== Tablas: aparición con barrido ===== */
+.sc{position:relative;overflow:hidden;border-radius:28px;padding:12px 10px 8px;animation:sqsweep .9s cubic-bezier(.65,0,.25,1) both;animation-delay:calc(var(--i)*.22s)}
+@keyframes sqsweep{from{clip-path:inset(0 100% 0 0 round 28px)}to{clip-path:inset(0 0 0 0 round 28px)}}
+.sc::after{content:"";position:absolute;inset:0;pointer-events:none;opacity:0;background:linear-gradient(100deg,transparent 35%,rgba(255,255,255,.8) 50%,transparent 65%);animation:sqshine .9s ease-out both;animation-delay:calc(var(--i)*.22s)}
+@keyframes sqshine{from{opacity:1;transform:translateX(-110%)}to{opacity:0;transform:translateX(110%)}}
+.sh{display:flex;align-items:center;gap:10px;padding:0 6px 10px}.sh b{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;font-weight:600}
+.sh em{font-style:normal;font-size:.75rem;padding:2px 10px;border-radius:99px;background:rgba(91,124,255,.2);white-space:nowrap}
+.sr{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;gap:8px;padding:8px 10px;border-radius:16px;transition:background .25s;animation:sqrow .45s ease both;animation-delay:calc(var(--i)*.22s + .45s + var(--r)*.08s)}
+@keyframes sqrow{from{opacity:0;transform:translateX(-14px)}}
+.sr b{display:block;font-size:.9rem;font-weight:500;overflow:hidden;text-overflow:ellipsis}.sr small{color:var(--mute);font-size:.72rem}
+.sr.hot{background:rgba(91,124,255,.24)}
+/* ===== Iconos PK / FK animados ===== */
+.tags{display:flex;gap:6px}
+.tag{display:inline-grid;place-items:center;width:26px;height:26px;border-radius:50%;transition:transform .35s cubic-bezier(.34,1.8,.5,1)}
+.tag svg{width:15px;height:15px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.tag.pk{background:#ffd56b;color:#7a5200}.tag.fk{background:var(--acc);color:#fff}
+.pk svg{animation:sqwig 3.2s ease-in-out infinite}.fk svg{animation:sqnudge 1.6s ease-in-out infinite}
+@keyframes sqwig{0%,78%,100%{rotate:0deg}84%{rotate:-22deg}92%{rotate:16deg}}
+@keyframes sqnudge{50%{transform:translateX(3px)}}
+.sr:hover .tag,.sr.hot .tag{transform:scale(1.2)}
+/* ===== Líneas curvas ===== */
+.rl{fill:none;stroke:var(--acc);stroke-width:2.6;stroke-linecap:round;stroke-dasharray:var(--len);animation:sqdraw 1.1s ease both;animation-delay:1.5s;transition:stroke-width .25s}
+@keyframes sqdraw{from{stroke-dashoffset:var(--len)}}
+.flow{fill:none;stroke:#fff;stroke-width:2;stroke-linecap:round;stroke-dasharray:1 12;animation:sqflow 1s linear infinite,sqfade .5s 2.7s both}
+@keyframes sqflow{to{stroke-dashoffset:-13}}@keyframes sqfade{from{opacity:0}}
+.rl.hot{stroke-width:4.2;filter:drop-shadow(0 0 6px var(--acc))}
+.pt{animation:sqpop .45s cubic-bezier(.34,1.8,.5,1) both;animation-delay:1.45s;transform-box:fill-box;transform-origin:center}
+@keyframes sqpop{from{scale:0;opacity:0}}
+.lb{font:600 12px Outfit,sans-serif;fill:var(--ink);text-anchor:middle}
+.sqsvg.static *{animation:none!important}
+/* ===== Leyenda ===== */
+.sq-leg{display:flex;flex-wrap:wrap;gap:10px 26px;padding:12px 6px 0;color:var(--mute);font-size:.85rem}
+.sq-leg span{display:inline-flex;align-items:center;gap:8px}.sq-leg b{color:var(--ink);font-weight:600}
